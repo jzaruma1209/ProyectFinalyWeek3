@@ -2,7 +2,7 @@ const catchError = require("../utils/catchError");
 const genres = require("../models/genres");
 
 const getAll = catchError(async (req, res) => {
-  const results = await genres.findAll();
+  const results = await genres.findAll({ include: Movies });
   return res.json(results);
 });
 
@@ -13,7 +13,7 @@ const create = catchError(async (req, res) => {
 
 const getOne = catchError(async (req, res) => {
   const { id } = req.params;
-  const result = await genres.findByPk(id);
+  const result = await genres.findByPk(id, { include: Movies });
   if (!result) return res.sendStatus(404);
   return res.json(result);
 });
