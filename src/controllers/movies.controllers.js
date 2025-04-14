@@ -38,6 +38,11 @@ const update = catchError(async (req, res) => {
   return res.json(result[1][0]);
 });
 
+const setMovies = catchError(async (req, res) => {
+  const { id } = req.params;
+  return res.json(id);
+});
+
 module.exports = {
   getAll,
   create,
